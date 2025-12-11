@@ -1,0 +1,26 @@
+{
+    "Base": {
+        "revenue_multiplier": 1.0,
+        "cogs_multiplier": 1.0,
+        "volume_adjustment": 0.0,
+        "price_adjustment": 0.0,
+        "capex_multiplier": 1.0,
+        "opex_multiplier": 1.0
+    },
+    "Best": {
+        "revenue_multiplier": 1.15,
+        "cogs_multiplier": 0.95,
+        "volume_adjustment": 0.01,
+        "price_adjustment": 0.005,
+        "capex_multiplier": 1.20,
+        "opex_multiplier": 0.95
+    },
+    "Worst": {
+        "revenue_multiplier": 0.85,
+        "cogs_multiplier": 1.10,
+        "volume_adjustment": -0.01,
+        "price_adjustment": -0.005,
+        "capex_multiplier": 0.80,
+        "opex_multiplier": 1.10
+    }
+}

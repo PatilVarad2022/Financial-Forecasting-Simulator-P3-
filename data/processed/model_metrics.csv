@@ -1,0 +1,8 @@
+Series,ModelName,MAPE,RMSE,TrainingStart,TrainingEnd
+Revenue,Holt-Winters (Add/Add),5.48,23326.56,2020-01-01,2024-12-01
+COGS,Holt-Winters (Add/Add),6.57,12958.9,2020-01-01,2024-12-01
+OpEx_Sales,Holt-Winters (Add/Add),5.74,3641.51,2020-01-01,2024-12-01
+OpEx_Admin,Holt-Winters (Add/Add),5.23,1505.25,2020-01-01,2024-12-01
+Capex,Holt-Winters (Add/Add),6.76,95519.39,2020-01-01,2024-12-01
+Cash_In,Holt-Winters (Add/Add),6.35,21831.18,2020-01-01,2024-12-01
+Cash_Out,Holt-Winters (Add/Add),5.75,97636.31,2020-01-01,2024-12-01

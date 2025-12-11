@@ -1,0 +1,77 @@
+{
+    "levers": {
+        "price": {
+            "name": "Price Change",
+            "range": [
+                -0.10,
+                -0.05,
+                0.0,
+                0.05,
+                0.10
+            ],
+            "impact_on": [
+                "revenue",
+                "ebitda"
+            ]
+        },
+        "volume": {
+            "name": "Volume Change",
+            "range": [
+                -0.10,
+                -0.05,
+                0.0,
+                0.05,
+                0.10
+            ],
+            "impact_on": [
+                "revenue",
+                "ebitda",
+                "cash"
+            ]
+        },
+        "cogs_pct": {
+            "name": "COGS % Change",
+            "range": [
+                -0.05,
+                -0.02,
+                0.0,
+                0.02,
+                0.05
+            ],
+            "impact_on": [
+                "gross_margin",
+                "ebitda"
+            ]
+        },
+        "hiring_rate": {
+            "name": "Hiring Rate Change",
+            "range": [
+                -0.5,
+                -0.25,
+                0.0,
+                0.25,
+                0.5
+            ],
+            "impact_on": [
+                "payroll",
+                "ebitda",
+                "cash"
+            ]
+        },
+        "capex": {
+            "name": "CapEx Change",
+            "range": [
+                -0.20,
+                -0.10,
+                0.0,
+                0.10,
+                0.20
+            ],
+            "impact_on": [
+                "investing_cf",
+                "cash",
+                "depreciation"
+            ]
+        }
+    }
+}
