@@ -49,7 +49,7 @@ A **corporate-grade FP&A forecasting simulator** that generates deterministic, a
 - EBITDA & EBITDA Margin (%)
 - Net Profit & Net Profit Margin (%)
 - Operating Cash Flow
-- Cash Runway analysis
+- Working Capital Management (AR, Inventory, AP)
 
 ✅ **Automated Excel/CSV Exports**  
 - Formula-driven Excel model (not value-only)
@@ -79,6 +79,28 @@ python run.py
 
 **That's it!** The entire pipeline runs with one command.
 
+**Expected Output:**
+```
+============================================================
+🚀 P3 FINANCIAL FORECASTING SIMULATOR
+============================================================
+
+[1/4] 📅 Generating dimension tables...
+[2/4] 🔮 Running forecast engine...
+[3/4] 📊 Exporting Excel model...
+[4/4] 📝 Generating insights report...
+
+============================================================
+✅ FORECAST COMPLETED
+============================================================
+
+📂 Output Files:
+  → outputs/base_forecast.csv
+  → outputs/scenario_summary.csv
+  → outputs/kpi_summary.csv
+  → outputs/FPnA_Model_with_formulas.xlsx
+```
+
 ---
 
 ## 📂 Repository Structure
@@ -96,7 +118,7 @@ Financial_Forecasting_Simulator/
 ├── outputs/
 │   ├── base_forecast.csv       # 36-month base case forecast
 │   ├── scenario_summary.csv    # Best/Base/Worst comparison
-│   ├── kpi_summary.csv         # Key metrics snapshot
+│   ├── kpi_summary.csv         # Model performance metrics
 │   └── FPnA_Model_with_formulas.xlsx  # Interactive Excel model
 │
 ├── data/
@@ -110,13 +132,15 @@ Financial_Forecasting_Simulator/
 │       └── forecast_output.csv
 │
 ├── tests/
-│   ├── test_sanity.py          # 13 validation tests
+│   ├── test_sanity.py          # 12 validation tests
+│   ├── test_smoke.py           # Smoke tests
 │   └── audit_excel.py          # Formula verification
 │
 ├── docs/
 │   ├── model_map.md            # Sheet-by-sheet guide
 │   ├── talking_points.md       # Interview prep
-│   └── cv_bullets.md           # Resume bullets
+│   ├── cv_bullets.md           # Resume bullets
+│   └── recruiter_summary.md    # Recruiter brief
 │
 ├── README.md
 ├── requirements.txt
@@ -127,36 +151,38 @@ Financial_Forecasting_Simulator/
 
 ## 📈 Sample Output
 
-### KPI Summary (Example Values)
-
-| Metric                  | Value    |
-|------------------------|----------|
-| **Revenue CAGR**       | 12.4%    |
-| **Gross Margin**       | 60.0%    |
-| **EBITDA Margin**      | 18.2%    |
-| **Net Profit Growth**  | 9.8%     |
-| **Cash Runway**        | 24 months|
-
-*Note: These are example values. Actual outputs depend on configured drivers.*
-
 ### Output Files Explained
 
-1. **`base_forecast.csv`**  
-   - 36 months of monthly projections
-   - Columns: Date, Revenue, COGS, OpEx, EBITDA, Net Income, Cash Flow, etc.
+1. **`base_forecast.csv`** (36 months × 21 columns)
+   - Monthly projections from Jan 2025 to Dec 2027
+   - Columns: Date, Revenue, COGS, OpEx, Payroll, Headcount, CapEx, Depreciation, EBITDA, Net Income, Cash Flow, Working Capital (AR, Inventory, AP), Cash Balance
+   - **Verifiable:** Open the file to see 36 rows of monthly data
 
-2. **`scenario_summary.csv`**  
+2. **`scenario_summary.csv`**
    - Side-by-side comparison of Best/Base/Worst cases
-   - Shows revenue, profit, and cash impact of each scenario
+   - Shows revenue, COGS, OpEx, EBITDA for each scenario
+   - **Verifiable:** 36 rows with Scenario column showing "Base", "Best", "Worst"
 
-3. **`kpi_summary.csv`**  
-   - Key metrics: CAGR, margins, growth rates
-   - Ready for dashboard consumption
+3. **`kpi_summary.csv`**
+   - Model performance metrics: MAPE (Mean Absolute Percentage Error), RMSE
+   - Training period: 2020-01-01 to 2024-12-01
+   - **Verifiable:** 7 rows showing forecast accuracy for each financial metric
 
-4. **`FPnA_Model_with_formulas.xlsx`**  
+4. **`FPnA_Model_with_formulas.xlsx`**
    - Interactive Excel model with scenario switcher
    - All cells contain formulas (auditable)
-   - Sheets: Inputs, Engine, Financial Statements, Scenarios, Sensitivity
+   - Sheets: Inputs, Engine, Financial Statements, Scenarios, Working Capital, Depreciation Schedule, Sensitivity, Checks
+   - **Verifiable:** Open in Excel and click any cell to see formulas
+
+### Sample Data (First 3 Months from base_forecast.csv)
+
+| Date       | Revenue    | COGS      | EBITDA     | Net Income | Cash Balance |
+|------------|------------|-----------|------------|------------|--------------|
+| 2025-01-01 | $127,500   | $51,000   | -$53,250   | -$53,250   | $255,500     |
+| 2025-02-01 | $130,700   | $52,280   | -$51,650   | -$51,650   | $199,050     |
+| 2025-03-01 | $141,862   | $56,745   | -$46,069   | -$46,902   | $86,238      |
+
+**Note:** These are actual values from the generated forecast. Run `python run.py` to reproduce.
 
 ---
 
@@ -189,9 +215,9 @@ Cash Flow Statement:
   Net Income + Depreciation - ΔWorking Capital - CapEx = ΔCash
 
 Balance Sheet (Working Capital):
-  AR = Revenue / 365 × DSO
-  Inventory = COGS / 365 × DSI
-  AP = COGS / 365 × DPO
+  AR = Revenue / 365 × DSO (45 days)
+  Inventory = COGS / 365 × DSI (30 days)
+  AP = COGS / 365 × DPO (30 days)
 ```
 
 ### 3. Scenario Planning
@@ -213,7 +239,7 @@ pytest tests/test_sanity.py -v
 ```
 
 **Tests include:**
-- ✅ Forecast file exists and has correct structure
+- ✅ Forecast file exists and has correct structure (36 rows × 21 columns)
 - ✅ No NaN or missing values
 - ✅ Revenue is positive and growing
 - ✅ COGS/Revenue ratio is valid (0-100%)
@@ -221,6 +247,12 @@ pytest tests/test_sanity.py -v
 - ✅ Working capital calculations are correct
 - ✅ EBITDA = Revenue - COGS - OpEx
 - ✅ Net Income < Revenue (sanity check)
+- ✅ AR magnitude is reasonable
+- ✅ Depreciation is non-negative
+- ✅ CapEx matches schedule
+- ✅ Cash balance continuity maintained
+
+**All tests passing:** ✅ 12/12
 
 Verify Excel formulas:
 
@@ -236,7 +268,6 @@ python tests/audit_excel.py
 - ✅ 3-statement financial model (P&L, Cash Flow, Balance Sheet)
 - ✅ Driver-based forecasting methodology
 - ✅ Scenario planning (Best/Base/Worst)
-- ✅ Sensitivity analysis
 - ✅ Working capital management (DSO/DSI/DPO)
 - ✅ Depreciation waterfall
 
@@ -264,13 +295,13 @@ python tests/audit_excel.py
 
 Use these on your resume:
 
-1. **Built a deterministic FP&A forecasting simulator** generating 36-month financial projections with 95%+ accuracy using driver-based modeling (Python, Excel)
+1. **Built a deterministic FP&A forecasting simulator** generating 36-month financial projections using driver-based modeling (Python, Excel, Pandas)
 
-2. **Automated scenario planning engine** producing Best/Base/Worst case analysis, reducing manual forecast time by 80% for strategic planning
+2. **Automated scenario planning engine** producing Best/Base/Worst case analysis with configurable revenue and cost multipliers for strategic planning
 
 3. **Designed formula-driven Excel model** with 3-statement integration (P&L, Cash Flow, Balance Sheet) and instant scenario switching for executive presentations
 
-4. **Implemented 13 automated validation tests** ensuring data integrity, cash reconciliation, and margin consistency across 5-year historical + 3-year forecast datasets
+4. **Implemented 12 automated validation tests** ensuring data integrity, cash reconciliation, and margin consistency across 5-year historical + 3-year forecast datasets
 
 5. **Created working capital forecasting module** using DSO/DSI/DPO logic, accurately projecting AR, Inventory, and AP for cash runway analysis
 
@@ -289,7 +320,6 @@ Edit `data/config/drivers.json`:
   "price_growth_monthly": 0.005,
   "cogs_pct": 0.40,
   "fixed_opex_monthly": 45000,
-  "variable_opex_pct": 0.10,
   "dso": 45,
   "dsi": 30,
   "dpo": 30
@@ -322,6 +352,7 @@ Edit `data/config/scenarios.json`:
 - **[Model Map](docs/model_map.md)**: Sheet-by-sheet Excel guide
 - **[Talking Points](docs/talking_points.md)**: Interview preparation
 - **[CV Bullets](docs/cv_bullets.md)**: ATS-optimized resume bullets
+- **[Recruiter Summary](docs/recruiter_summary.md)**: 30-second pitch
 
 ---
 
