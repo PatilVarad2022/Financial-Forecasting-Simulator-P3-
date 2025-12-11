@@ -64,8 +64,8 @@ A **corporate-grade FP&A forecasting simulator** that generates deterministic, a
 
 ```bash
 # Clone the repository
-git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-.git
-cd Financial-Forecasting-Simulator-P3-
+git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3.git
+cd Financial-Forecasting-Simulator-P3
 
 # Install dependencies
 pip install -r requirements.txt

@@ -1,6 +1,6 @@
 # ✅ FINAL VERIFICATION CHECKLIST
 
-## Repository: https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-
+## Repository: https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3
 
 ---
 
@@ -305,7 +305,7 @@ pytest tests/test_sanity.py -v
 
 ## 🔗 REPOSITORY
 
-**URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-
+**URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3
 
 **Status:** ✅ Live and accessible
 

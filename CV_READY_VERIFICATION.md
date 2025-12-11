@@ -1,7 +1,7 @@
 # ✅ CV-READY PROJECT VERIFICATION
 
 ## Repository Successfully Pushed to GitHub
-**URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-
+**URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3
 
 ---
 
@@ -188,7 +188,7 @@ pytest
 
 ## 🔗 GITHUB REPOSITORY
 
-**Live URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-
+**Live URL:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3
 
 **Status:** ✅ Successfully pushed to GitHub (main branch)
 
@@ -204,8 +204,8 @@ pytest
 
 ```bash
 # Clone the repo
-git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-.git
-cd Financial-Forecasting-Simulator-P3-
+git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3.git
+cd Financial-Forecasting-Simulator-P3
 
 # Install dependencies
 pip install -r requirements.txt

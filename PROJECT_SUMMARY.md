@@ -1,7 +1,7 @@
 # 🎉 PROJECT SUCCESSFULLY PUSHED TO GITHUB
 
 ## ✅ Repository URL
-**https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-**
+**https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3**
 
 ---
 
@@ -78,8 +78,8 @@ Updated `.gitignore` to exclude:
 
 ### Step 1: Clone
 ```bash
-git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-.git
-cd Financial-Forecasting-Simulator-P3-
+git clone https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3.git
+cd Financial-Forecasting-Simulator-P3
 ```
 
 ### Step 2: Install
@@ -241,7 +241,7 @@ This will produce:
 
 ## 🔗 LINKS
 
-- **GitHub Repository:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3-
+- **GitHub Repository:** https://github.com/PatilVarad2022/Financial-Forecasting-Simulator-P3
 - **Verification Document:** `CV_READY_VERIFICATION.md` (in repo)
 - **Documentation:** `docs/` folder (in repo)
 
